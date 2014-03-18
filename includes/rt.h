@@ -12,6 +12,12 @@
 
 #ifndef RT_H
 # define RT_H
+
+# include <stdio.h>
+# include <fcntl.h>
+# include "libprt.h"
+# include "gnl.h"
+
 # define PI 3.14159
 # define PHI (PI / 4)
 # define X_MAX 700
@@ -36,7 +42,10 @@
 # define ZOOM 350
 # define INC_A PI / 30
 
-#include <stdio.h>
+/*
+** PROGRAM ERROR MESSAGES
+*/
+# define USAGE "wrong number of arguments.\nusage: ./rt <mapname>"
 
 typedef struct		s_dt
 {
@@ -173,7 +182,6 @@ typedef struct		s_env
 void	ft_ray_cast(t_dt *dt, t_obj *obj);
 void	ft_inter_obj(t_ray *ray, t_obj *obj);
 
-int		ft_strlen(char *s);
 float	*ft_intxvect(float x, float vect[3]);
 float	*ft_norm_vect(float *vect);
 float	*ft_prod_vect(float u[3], float v[3]);
@@ -191,5 +199,12 @@ void	ft_init_rec(t_ray *in, t_ray *out);
 void	ft_li_pos(float *norm, t_ray *ray_li);
 float	ft_dist_li(t_li li, t_ray *ray);
 float	ft_dist_pts(float a[3], float b[3]);
+
+/*
+** get_data functions.
+*/
+void	rt_get_data(char *argv, t_env *env);
+void	rt_set_cam(t_dt *dt);
+
 
 #endif /* !RT_H */

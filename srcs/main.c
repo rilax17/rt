@@ -10,41 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
 #include <stdlib.h>
 #include <mlx.h>
+#include "rt.h"
 
 int				ft_loop(int key, t_env **env);
 void			ft_set_obj(t_obj *obj);
-static int		ft_set_mlx(t_dt *dt);
-static int		ft_expose(t_env *env);
-void				ft_rc_th(t_env *env);
+void			ft_rc_th(t_env *env);
 
-int				main(void)
-{
-	t_env		*env;
-
-	if ((env = (t_env *)malloc(sizeof(t_env))) == NULL)
-		return (-1);
-	if ((env->dt = (t_dt *)malloc(sizeof(t_dt))) == NULL)
-		return (-1);
-	if ((env->obj = (t_obj *)malloc(sizeof(t_obj))) == NULL)
-		return (-1);
-	ft_set_mlx(env->dt);
-	env->dt->zoom = ZOOM;
-	env->dt->cam_pos[0] = 0;
-	env->dt->cam_pos[1] = -ZOOM;
-	env->dt->cam_pos[2] = 0;
-	env->dt->opt_f = 0;
-	env->dt->delta = 10;
-	ft_set_obj(env->obj);
-	ft_ray_cast(env->dt, env->obj);
-//	ft_rc_th(env);
-	mlx_key_hook(env->dt->win, &ft_loop, &env);
-	mlx_expose_hook(env->dt->win, ft_expose, env);
-	mlx_loop(env->dt->conn);
-	return (0);
-}
 
 void			ft_clear(t_env *env)
 {
@@ -59,6 +32,19 @@ void			ft_mlx_add_col(t_dt *dt, t_ray *ray)
 		= ray->col[1];
 	dt->img_c[(ray->pix[1] * dt->s_line) + (ray->pix[0] * (dt->bpp / 8)) + 2]
 		= ray->col[0];
+}
+static t_env	*rt_init_env(void)
+{
+	t_env	*env;
+
+	if ((env = (t_env *)malloc(sizeof(t_env))))
+	{
+		env->dt = (t_dt *)malloc(sizeof(t_dt));
+		env->obj = (t_obj *)malloc(sizeof(t_obj));
+		if (env->dt && env->obj)
+			return (env);
+	}
+	return (NULL);
 }
 
 static int		ft_set_mlx(t_dt *dt)
@@ -80,3 +66,23 @@ static int		ft_expose(t_env *env)
 	return (0);
 }
 
+int				main(int argc, char **argv)
+{
+	t_env		*env;
+
+	if (!(env = rt_init_env()))
+		ft_quit(EINTR, "error during env initialization");
+	if (argc == 2)
+		rt_get_data(argv[1], env);
+	else
+		ft_quit(0, USAGE);
+	
+	ft_set_mlx(env->dt);
+	ft_set_obj(env->obj);
+	ft_ray_cast(env->dt, env->obj);
+//	ft_rc_th(env);
+	mlx_key_hook(env->dt->win, &ft_loop, &env);
+	mlx_expose_hook(env->dt->win, ft_expose, env);
+	mlx_loop(env->dt->conn);
+	return (EXIT_SUCCESS);
+}

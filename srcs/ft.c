@@ -35,13 +35,3 @@ int			ft_get_next_inter(t_ray *ray, t_obj *obj)
 	}
 	return (0);
 }
-
-int			ft_strlen(char *s)
-{
-	int		i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
