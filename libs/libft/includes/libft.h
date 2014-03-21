@@ -21,6 +21,8 @@
 
 void	ft_bzero(void *s, size_t n);
 char	*ft_itoa(int n);
+double	ft_atod(char *s);
+float	ft_atof(char *s);
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

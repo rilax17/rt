@@ -73,7 +73,7 @@ int				main(int argc, char **argv)
 	if (!(env = rt_init_env()))
 		ft_quit(EINTR, "error during env initialization");
 	if (argc == 2)
-		rt_get_data(argv[1], env);
+		rt_get_scene(argv[1], env);
 	else
 		ft_quit(0, USAGE);
 	

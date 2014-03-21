@@ -13,6 +13,23 @@
 #include "rt.h"
 #include <stdlib.h>
 
+void		rt_set_cam(float *pos, float *dir, t_dt *dt)
+{
+	int		i;
+
+	(void)dir;
+	i = -1;
+	while (dir && ++i < 3)
+		dt->dir[i] = 0;
+	i = 0;
+	while (pos && ++i < 3)
+		dt->cam_pos[i] = 0;
+	dt->cam_pos[1] = -ZOOM;
+	dt->zoom = ZOOM;
+	dt->opt_f = 0;
+ 	dt->delta = 10;
+}
+
 void		ft_set_li(float c[3], int col[3], t_obj *obj)
 {
 	int		i;

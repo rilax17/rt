@@ -12,6 +12,10 @@
 
 #include	"libft.h"
 
+/*
+** locates first occurence of char c in string
+*/
+
 char	*ft_strrchr(const char *s, int c)
 {
 	char		target;

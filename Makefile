@@ -17,7 +17,7 @@ SRCS = main.c\
 	inter_li.c inter_trans.c inter_pl.c inter_sph.c inter_cy.c inter_co.c\
 	ft_inside_cocy.c ft_inter.c ft_normale.c ft_normale2.c ft_shade.c\
 	ft_color.c ft.c ft_threads.c \
-	rt_get_data.c
+	rt_get_scene.c rt_get.c rt_tools.c
 
 LIBS = 	-L/usr/X11/lib -lmlx -lXext -lX11 -lpthread\
 		-Llibs/libprt -lprt\

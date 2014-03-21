@@ -12,6 +12,10 @@
 
 #include	"libft.h"
 
+/*
+** locates first occurence of s2 in s1. searches no more than n characters.
+*/
+
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
