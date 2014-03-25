@@ -77,12 +77,12 @@ int				main(int argc, char **argv)
 	else
 		ft_quit(0, USAGE);
 	
-	ft_set_mlx(env->dt);
-	ft_set_obj(env->obj);
-	ft_ray_cast(env->dt, env->obj);
-//	ft_rc_th(env);
-	mlx_key_hook(env->dt->win, &ft_loop, &env);
-	mlx_expose_hook(env->dt->win, ft_expose, env);
-	mlx_loop(env->dt->conn);
+// 	ft_set_mlx(env->dt);
+// 	ft_set_obj(env->obj);
+// 	ft_ray_cast(env->dt, env->obj);
+// 	ft_rc_th(env);
+// 	mlx_key_hook(env->dt->win, &ft_loop, &env);
+// 	mlx_expose_hook(env->dt->win, ft_expose, env);
+// 	mlx_loop(env->dt->conn);
 	return (EXIT_SUCCESS);
 }

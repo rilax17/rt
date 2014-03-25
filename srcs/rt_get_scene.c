@@ -17,28 +17,27 @@
 ** if file, open, read file.
 */
 
-void	rt_get_data(int fd, char *line, t_env *env)
+static void		rt_get_data(int fd, char *line, t_env *env)
 {
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_strstr(line, "camera"))
+		if (ft_strstr(line, "camera{") || ft_strstr(line, "camera {") )
 			rt_get_cam(fd, env->dt);
 		else if (ft_strstr(line, "sphere"))
 			rt_get_sph(fd, env->obj);
 		else if (ft_strstr(line, "cylinder"))
 			rt_get_cyl(fd, env->obj);
-		else if (ft_strstr(line, "planes"))
+		else if (ft_strstr(line, "plane"))
 			rt_get_pln(fd, env->obj);
-		else if (ft_strstr(line, "spots"))
+		else if (ft_strstr(line, "spot"))
 			rt_get_spt(fd, env->obj);
 		else
-			ft_printf("%s\n", line);
+			continue;
 	}
 
 }
 
-
-void	rt_get_scene(char *file, t_env *env)
+void			rt_get_scene(char *file, t_env *env)
 {
 	int		fd;
 	char	*line;
@@ -50,19 +49,9 @@ void	rt_get_scene(char *file, t_env *env)
 			if (ft_strstr(line, "scene"))
 				rt_get_data(fd, line, env);
 			else
-				ft_printf("%s\n", line);
+				continue;
 		}
 	}
 	else
 		ft_quit(ENOENT, "could not open requested file");
 }
-
-// void	rt_set_cam(t_dt *dt)
-// {
-// 	dt->zoom = ZOOM;
-// 	dt->cam_pos[0] = 0;
-// 	dt->cam_pos[1] = -ZOOM;
-// 	dt->cam_pos[2] = 0;
-// 	dt->opt_f = 0;
-// 	dt->delta = 10;
-// }

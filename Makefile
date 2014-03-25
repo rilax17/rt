@@ -13,11 +13,11 @@
 NAME = rt
 SRCS = main.c\
 	set_param.c get_data.c ray_cast.c base_ch.c get_color_obj.c\
-	calc_li.c view.c set_obj.c fonctions.c\
+	calc_li.c view.c fonctions.c\
 	inter_li.c inter_trans.c inter_pl.c inter_sph.c inter_cy.c inter_co.c\
 	ft_inside_cocy.c ft_inter.c ft_normale.c ft_normale2.c ft_shade.c\
 	ft_color.c ft.c ft_threads.c \
-	rt_get_scene.c rt_get.c rt_tools.c
+	rt_get_scene.c rt_get.c rt_tools.c rt_set_obj.c
 
 LIBS = 	-L/usr/X11/lib -lmlx -lXext -lX11 -lpthread\
 		-Llibs/libprt -lprt\

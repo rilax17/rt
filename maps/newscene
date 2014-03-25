@@ -1,37 +1,42 @@
 # line and space sensitive scene description.
 
 scene {
-	camera{
+	camera
 		pos: 0 0 -5
 		dir: 1 1 1
 	}
-	sphere{
-		new:
-		pos: 0, 0.2, 0
+	sphere {
+		pos: -100 100 0
+		radius: 30
+		color: 0 127 0
+	}
+	sphere {
+		pos: 100 100 0
+		radius: 30
+		color: 40 127 0
+	}
+	sphere {
+		pos: 0 -150 0
+		radius: 70
+		color: 139 47 100
+	}
+	cylinder {
+		pos: -2 0 2
 		radius: 1
-		color: 1, 0, 0, 0.5
+		color: 10 20 255
 	}
-	sphere{
-		new:
-		pos: 1, 1, -0.5
-		radius: 0.5
-		color: 0.25, 0.25, 1, 0.5
-	}
-	cylinder{
-		new:
-		pos: -2, 0, 2
-		radius: 1
-		color: 0.25, 0.5, 0.25, 0.5
-	}
-	planes{
-		new:
-		pos: 0, 1, 0
+	plane {
+		pos: 0 1 0
 		dist: -1
-		color: 1, 1, 1, 2.9
+		color: 1 1 2.9
 	}
-	spots{
-		new:
-		color: 1, 1, 1, 0
-		pos: -7, 10, -10
+	spot {
+		color: 255 255 255
+		pos: -150 -300 -150
 	}
+	spot {
+		color: 255 255 255
+		pos: -150 -250 -150
+	}
+}
 }

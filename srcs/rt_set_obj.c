@@ -20,44 +20,24 @@ void		rt_set_cam(float *pos, float *dir, t_dt *dt)
 	(void)dir;
 	i = -1;
 	while (dir && ++i < 3)
-		dt->dir[i] = 0;
+		dt->dir[i] = dir[i];
 	i = 0;
 	while (pos && ++i < 3)
-		dt->cam_pos[i] = 0;
+		dt->cam_pos[i] = pos[i];
 	dt->cam_pos[1] = -ZOOM;
 	dt->zoom = ZOOM;
 	dt->opt_f = 0;
  	dt->delta = 10;
 }
 
-void		ft_set_li(float c[3], int col[3], t_obj *obj)
-{
-	int		i;
-
-	i = obj->nb_o[0];
-	if (i < MAX_OBJ)
-	{
-		obj->nb_o[0] = i;
-		obj->li[i].c[0] = c[0];
-		obj->li[i].c[1] = c[1];
-		obj->li[i].c[2] = c[2];
-		obj->li[i].col[0] = col[0];
-		obj->li[i].col[1] = col[1];
-		obj->li[i].col[2] = col[2];
-	}
-	obj->refl[0 * MAX_OBJ + i] = 0;
-	obj->tran[0 * MAX_OBJ + i] = 0;
-	obj->nb_o[0] = i + 1;
-}
-
-void		ft_set_sph(float c[3], float r, int col[3], t_obj *obj)
+void		rt_set_sph(float c[3], float r[1], int col[3], t_obj *obj)
 {
 	int		i;
 
 	i = obj->nb_o[1];
 	if (i < MAX_OBJ)
 	{
-		obj->sph[i].r = r;
+		obj->sph[i].r = r[0];
 		obj->sph[i].c[0] = c[0];
 		obj->sph[i].c[1] = c[1];
 		obj->sph[i].c[2] = c[2];
@@ -71,28 +51,7 @@ void		ft_set_sph(float c[3], float r, int col[3], t_obj *obj)
 	obj->nb_o[1] = i + 1;
 }
 
-
-void		ft_set_pl(float c[3], float d, int col[3], t_obj *obj)
-{
-	int		i;
-
-	i = obj->nb_o[2];
-	if (i < MAX_OBJ)
-	{
-		obj->pl[i].a = c[0];
-		obj->pl[i].b = c[1];
-		obj->pl[i].c = c[2];
-		obj->pl[i].d = d;
-		obj->pl[i].col[0] = col[0];
-		obj->pl[i].col[1] = col[1];
-		obj->pl[i].col[2] = col[2];
-	}
-	obj->refl[2 * MAX_OBJ + i] = 0;
-	obj->tran[2 * MAX_OBJ + i] = 0;
-	obj->nb_o[2] = i + 1;
-}
-
-void		ft_set_cy(float cv[2][3], float r, int col[3], t_obj *obj)
+void	rt_set_cyl(float cv[2][3], float r[1], int col[3], t_obj *obj)
 {
 	int		i;
 	float	*tmp;
@@ -112,7 +71,7 @@ void		ft_set_cy(float cv[2][3], float r, int col[3], t_obj *obj)
 		obj->cy[i].v[1] = tmp[1];
 		obj->cy[i].v[2] = tmp[2];
 		free(tmp);
-		obj->cy[i].r = r;
+		obj->cy[i].r = r[0];
 		obj->cy[i].col[0] = col[0];
 		obj->cy[i].col[1] = col[1];
 		obj->cy[i].col[2] = col[2];
@@ -158,4 +117,44 @@ void		ft_set_co(float cv[2][3], float a, int col[3], t_obj *obj)
 	obj->tran[4 * MAX_OBJ + i] = 0;
 	obj->ind[4 * MAX_OBJ + i] = 0.6;
 	obj->nb_o[4] = i + 1;
+}
+
+void		rt_set_pln(float c[3], float d[1], int col[3], t_obj *obj)
+{
+	int		i;
+
+	i = obj->nb_o[2];
+	if (i < MAX_OBJ)
+	{
+		obj->pl[i].a = c[0];
+		obj->pl[i].b = c[1];
+		obj->pl[i].c = c[2];
+		obj->pl[i].d = d[0];
+		obj->pl[i].col[0] = col[0];
+		obj->pl[i].col[1] = col[1];
+		obj->pl[i].col[2] = col[2];
+	}
+	obj->refl[2 * MAX_OBJ + i] = 0;
+	obj->tran[2 * MAX_OBJ + i] = 0;
+	obj->nb_o[2] = i + 1;
+}
+
+void		rt_set_spt(float c[3], int col[3], t_obj *obj)
+{
+	int		i;
+
+	i = obj->nb_o[0];
+	if (i < MAX_OBJ)
+	{
+		obj->nb_o[0] = i;
+		obj->li[i].c[0] = c[0];
+		obj->li[i].c[1] = c[1];
+		obj->li[i].c[2] = c[2];
+		obj->li[i].col[0] = col[0];
+		obj->li[i].col[1] = col[1];
+		obj->li[i].col[2] = col[2];
+	}
+	obj->refl[0 * MAX_OBJ + i] = 0;
+	obj->tran[0 * MAX_OBJ + i] = 0;
+	obj->nb_o[0] = i + 1;
 }

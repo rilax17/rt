@@ -201,7 +201,7 @@ float	ft_dist_li(t_li li, t_ray *ray);
 float	ft_dist_pts(float a[3], float b[3]);
 
 /*
-** get_data functions.
+** get_data functions
 */
 void	rt_get_scene(char *argv, t_env *env);
 void	rt_get_cam(int fd, t_dt *dt);
@@ -209,9 +209,19 @@ void	rt_get_sph(int fd, t_obj *obj);
 void	rt_get_cyl(int fd, t_obj *obj);
 void	rt_get_pln(int fd, t_obj *obj);
 void	rt_get_spt(int fd, t_obj *obj);
-void	rt_get_int(char *line, int *tab, size_t size);
-void	rt_get_float(char *line, float *tab, size_t size);
 
 void	rt_set_cam(float *pos, float *dir, t_dt *dt);
+void	rt_set_sph(float c[3], float r[1], int col[3], t_obj *obj);
+void	rt_set_cyl(float cv[2][3], float r[1], int col[3], t_obj *obj);
+void	rt_set_spt(float c[3], int col[3], t_obj *obj);
+void	rt_set_pln(float c[3], float d[1], int col[3], t_obj *obj);
+
+/*
+** rt tools
+*/
+void	rt_init_int(int *tab, int size);
+void	rt_init_float(float *tab, int size);
+void	rt_get_int(char *line, int *tab, size_t size);
+void	rt_get_float(char *line, float *tab, size_t size);
 
 #endif /* !RT_H */

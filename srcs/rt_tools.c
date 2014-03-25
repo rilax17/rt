@@ -43,3 +43,21 @@ void	rt_get_float(char *line, float *tab, size_t size)
 			tab[i++] = ft_atof(tmp[j++]);
 	}
 }
+
+void	rt_init_int(int *tab, int size)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+		tab[i++] = 0;
+}
+
+void	rt_init_float(float *tab, int size)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+		tab[i++] = 0;
+}
